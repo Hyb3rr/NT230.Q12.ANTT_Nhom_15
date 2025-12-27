@@ -1,0 +1,31 @@
+# Core ML/DL frameworks
+torch==2.1.0
+transformers==4.35.0
+
+# API framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+slowapi==0.1.9
+
+# Data validation
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Process monitoring
+psutil==5.9.6
+WMI>=1.5.1; sys_platform == 'win32'
+pywin32>=306; sys_platform == 'win32'
+
+# Memory forensics
+volatility3>=2.5.0
+
+# Utilities
+requests==2.31.0
+aiofiles==23.2.1
+python-dotenv==1.0.0
+
+# Development
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2

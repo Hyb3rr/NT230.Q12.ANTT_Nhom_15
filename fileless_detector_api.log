@@ -1,0 +1,151 @@
+2025-12-16 19:15:41,409 - app - INFO - Starting Fileless Malware Detection API
+2025-12-16 19:15:41,409 - app - INFO - Loading model weights...
+2025-12-16 19:15:41,409 - model_loader - INFO - Configuration loaded: bert-base-uncased
+2025-12-16 19:15:41,409 - model_loader - INFO - Using CPU
+2025-12-16 19:15:42,363 - model_loader - INFO - Tokenizer loaded: bert-base-uncased
+2025-12-16 19:15:44,061 - model_loader - INFO - Loading model weights...
+2025-12-16 19:15:45,304 - model_loader - INFO - Model weights loaded successfully
+2025-12-16 19:15:45,304 - model_loader - INFO - Model parameters: 109,790,692
+2025-12-16 19:15:45,304 - model_loader - INFO - Model loaded successfully on cpu
+2025-12-16 19:15:45,304 - inference - INFO - Fileless detector initialized
+2025-12-16 19:15:45,304 - app - INFO - Model loaded successfully
+2025-12-16 19:15:45,304 - app - INFO - Device: cpu
+2025-12-16 19:15:45,304 - app - INFO - Model architecture: BERT-MLP (4-stage classifier)
+2025-12-16 19:15:47,526 - app - INFO - Request: GET / from 127.0.0.1
+2025-12-16 19:15:47,527 - app - INFO - Response: 200 - Duration: 0.001s
+2025-12-16 19:16:07,839 - app - INFO - Request: GET /docs from 127.0.0.1
+2025-12-16 19:16:07,839 - app - INFO - Response: 200 - Duration: 0.000s
+2025-12-16 19:16:07,915 - app - INFO - Request: GET /openapi.json from 127.0.0.1
+2025-12-16 19:16:07,924 - app - INFO - Response: 200 - Duration: 0.010s
+2025-12-16 19:16:28,355 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:16:28,357 - app - INFO - Detection request from 127.0.0.1
+2025-12-16 19:16:28,357 - app - INFO - Input length: 6 chars
+2025-12-16 19:16:28,820 - inference - INFO - Detection: malicious (stage: Operational, confidence: 94.35%)
+2025-12-16 19:16:28,821 - app - INFO - Detection result: malicious (confidence: 94.35%, stage: Operational, time: 0.463s)
+2025-12-16 19:16:28,821 - app - INFO - Response: 200 - Duration: 0.465s
+2025-12-16 19:16:44,160 - app - INFO - Request: GET /detect from 127.0.0.1
+2025-12-16 19:16:44,160 - app - INFO - Response: 405 - Duration: 0.000s
+2025-12-16 19:17:11,288 - app - INFO - Shutting down API
+2025-12-16 19:17:11,288 - model_loader - INFO - Model resources cleaned up
+2025-12-16 19:17:11,421 - model_loader - INFO - Model resources cleaned up
+2025-12-16 19:23:16,410 - app - INFO - Starting Fileless Malware Detection API
+2025-12-16 19:23:16,410 - app - INFO - Loading model weights...
+2025-12-16 19:23:16,411 - model_loader - INFO - Configuration loaded: bert-base-uncased
+2025-12-16 19:23:16,411 - model_loader - INFO - Using CPU
+2025-12-16 19:23:16,833 - model_loader - INFO - Tokenizer loaded: bert-base-uncased
+2025-12-16 19:23:17,046 - model_loader - INFO - Loading model weights...
+2025-12-16 19:23:18,252 - model_loader - INFO - Model weights loaded successfully
+2025-12-16 19:23:18,252 - model_loader - INFO - Model parameters: 109,790,692
+2025-12-16 19:23:18,252 - model_loader - INFO - Model loaded successfully on cpu
+2025-12-16 19:23:18,252 - inference - INFO - Fileless detector initialized
+2025-12-16 19:23:18,252 - app - INFO - Model loaded successfully
+2025-12-16 19:23:18,252 - app - INFO - Device: cpu
+2025-12-16 19:23:18,252 - app - INFO - Model architecture: BERT-MLP (4-stage classifier)
+2025-12-16 19:23:18,402 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:23:18,402 - app - INFO - Response: 422 - Duration: 0.000s
+2025-12-16 19:23:38,705 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:23:38,705 - app - INFO - Response: 422 - Duration: 0.000s
+2025-12-16 19:25:14,009 - app - INFO - Request: GET / from 127.0.0.1
+2025-12-16 19:25:14,010 - app - INFO - Response: 200 - Duration: 0.001s
+2025-12-16 19:25:18,424 - app - INFO - Request: GET /docs from 127.0.0.1
+2025-12-16 19:25:18,424 - app - INFO - Response: 200 - Duration: 0.000s
+2025-12-16 19:25:18,525 - app - INFO - Request: GET /openapi.json from 127.0.0.1
+2025-12-16 19:25:18,532 - app - INFO - Response: 200 - Duration: 0.007s
+2025-12-16 19:25:30,629 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:25:30,629 - app - INFO - Response: 422 - Duration: 0.000s
+2025-12-16 19:26:17,053 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:26:17,053 - app - INFO - Response: 422 - Duration: 0.000s
+2025-12-16 19:26:22,365 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:26:22,365 - app - INFO - Detection request from 127.0.0.1
+2025-12-16 19:26:22,365 - app - INFO - Input length: 34 chars
+2025-12-16 19:26:22,697 - inference - INFO - Detection: malicious (stage: Operational, confidence: 98.32%)
+2025-12-16 19:26:22,697 - app - INFO - Detection result: malicious (confidence: 98.32%, stage: Operational, time: 0.332s)
+2025-12-16 19:26:22,697 - app - INFO - Response: 200 - Duration: 0.332s
+2025-12-16 19:29:38,116 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:29:38,116 - app - INFO - Detection request from 127.0.0.1
+2025-12-16 19:29:38,116 - app - INFO - Input length: 34 chars
+2025-12-16 19:29:38,207 - inference - INFO - Detection: malicious (stage: Operational, confidence: 98.32%)
+2025-12-16 19:29:38,207 - app - INFO - Detection result: malicious (confidence: 98.32%, stage: Operational, time: 0.091s)
+2025-12-16 19:29:38,209 - app - INFO - Response: 200 - Duration: 0.093s
+2025-12-16 19:37:04,990 - app - INFO - Request: GET /stages from 127.0.0.1
+2025-12-16 19:37:04,991 - app - INFO - Response: 200 - Duration: 0.002s
+2025-12-16 19:37:04,993 - app - INFO - Request: GET /stages from 127.0.0.1
+2025-12-16 19:37:04,994 - app - INFO - Response: 200 - Duration: 0.001s
+2025-12-16 19:37:08,289 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:37:08,290 - app - INFO - Response: 400 - Duration: 0.001s
+2025-12-16 19:37:09,408 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:37:09,409 - app - INFO - Response: 400 - Duration: 0.001s
+2025-12-16 19:39:34,206 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:39:34,206 - app - INFO - Response: 400 - Duration: 0.000s
+2025-12-16 19:39:34,761 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:39:34,762 - app - INFO - Response: 400 - Duration: 0.001s
+2025-12-16 19:39:34,999 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:39:34,999 - app - INFO - Response: 400 - Duration: 0.000s
+2025-12-16 19:39:35,146 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:39:35,147 - app - INFO - Response: 400 - Duration: 0.001s
+2025-12-16 19:39:35,315 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:39:35,315 - app - INFO - Response: 400 - Duration: 0.000s
+2025-12-16 19:40:42,648 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:40:42,649 - app - INFO - Response: 400 - Duration: 0.001s
+2025-12-16 19:41:29,501 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:41:29,501 - app - INFO - Response: 400 - Duration: 0.000s
+2025-12-16 19:41:30,034 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:41:30,034 - app - INFO - Response: 400 - Duration: 0.000s
+2025-12-16 19:41:30,220 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:41:30,221 - app - INFO - Response: 400 - Duration: 0.001s
+2025-12-16 19:41:30,375 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:41:30,375 - app - INFO - Response: 400 - Duration: 0.000s
+2025-12-16 19:41:44,845 - app - INFO - Shutting down API
+2025-12-16 19:41:44,845 - model_loader - INFO - Model resources cleaned up
+2025-12-16 19:41:44,972 - model_loader - INFO - Model resources cleaned up
+2025-12-16 19:42:05,289 - app - INFO - Starting Fileless Malware Detection API
+2025-12-16 19:42:05,290 - app - INFO - Loading model weights...
+2025-12-16 19:42:05,290 - model_loader - INFO - Configuration loaded: bert-base-uncased
+2025-12-16 19:42:05,291 - model_loader - INFO - Using CPU
+2025-12-16 19:42:05,656 - model_loader - INFO - Tokenizer loaded: bert-base-uncased
+2025-12-16 19:42:05,879 - model_loader - INFO - Loading model weights...
+2025-12-16 19:42:07,150 - model_loader - INFO - Model weights loaded successfully
+2025-12-16 19:42:07,151 - model_loader - INFO - Model parameters: 109,790,692
+2025-12-16 19:42:07,151 - model_loader - INFO - Model loaded successfully on cpu
+2025-12-16 19:42:07,151 - inference - INFO - Fileless detector initialized
+2025-12-16 19:42:07,152 - app - INFO - Model loaded successfully
+2025-12-16 19:42:07,152 - app - INFO - Device: cpu
+2025-12-16 19:42:07,152 - app - INFO - Model architecture: BERT-MLP (4-stage classifier)
+2025-12-16 19:42:08,643 - app - INFO - Request: GET /stages from 127.0.0.1
+2025-12-16 19:42:08,643 - app - INFO - Response: 200 - Duration: 0.000s
+2025-12-16 19:42:08,643 - app - INFO - Request: GET /stages from 127.0.0.1
+2025-12-16 19:42:08,643 - app - INFO - Response: 200 - Duration: 0.000s
+2025-12-16 19:42:11,870 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 19:42:11,871 - app - INFO - Response: 200 - Duration: 0.001s
+2025-12-16 19:42:11,872 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 19:42:11,874 - app - INFO - Detection request from 127.0.0.1
+2025-12-16 19:42:11,874 - app - INFO - Input length: 128 chars
+2025-12-16 19:42:12,250 - inference - INFO - Detection: malicious (stage: Pre-operational, confidence: 99.26%)
+2025-12-16 19:42:12,250 - app - INFO - Detection result: malicious (confidence: 99.26%, stage: Pre-operational, time: 0.376s)
+2025-12-16 19:42:12,252 - app - INFO - Response: 200 - Duration: 0.379s
+2025-12-16 19:43:12,064 - app - INFO - Shutting down API
+2025-12-16 19:43:12,065 - model_loader - INFO - Model resources cleaned up
+2025-12-16 19:43:12,185 - model_loader - INFO - Model resources cleaned up
+2025-12-16 20:20:44,543 - app - INFO - Starting Fileless Malware Detection API
+2025-12-16 20:20:44,543 - app - INFO - Loading model weights...
+2025-12-16 20:20:44,543 - model_loader - INFO - Configuration loaded: bert-base-uncased
+2025-12-16 20:20:44,543 - model_loader - INFO - Using CPU
+2025-12-16 20:20:44,976 - model_loader - INFO - Tokenizer loaded: bert-base-uncased
+2025-12-16 20:20:45,167 - model_loader - INFO - Loading model weights...
+2025-12-16 20:20:46,555 - model_loader - INFO - Model weights loaded successfully
+2025-12-16 20:20:46,555 - model_loader - INFO - Model parameters: 109,790,692
+2025-12-16 20:20:46,556 - model_loader - INFO - Model loaded successfully on cpu
+2025-12-16 20:20:46,556 - inference - INFO - Fileless detector initialized
+2025-12-16 20:20:46,556 - app - INFO - Model loaded successfully
+2025-12-16 20:20:46,556 - app - INFO - Device: cpu
+2025-12-16 20:20:46,556 - app - INFO - Model architecture: BERT-MLP (4-stage classifier)
+2025-12-16 20:20:47,085 - app - INFO - Request: OPTIONS /detect from 127.0.0.1
+2025-12-16 20:20:47,086 - app - INFO - Response: 200 - Duration: 0.001s
+2025-12-16 20:20:47,087 - app - INFO - Request: POST /detect from 127.0.0.1
+2025-12-16 20:20:47,090 - app - INFO - Detection request from 127.0.0.1
+2025-12-16 20:20:47,090 - app - INFO - Input length: 128 chars
+2025-12-16 20:20:47,422 - inference - INFO - Detection: malicious (stage: Pre-operational, confidence: 99.26%)
+2025-12-16 20:20:47,422 - app - INFO - Detection result: malicious (confidence: 99.26%, stage: Pre-operational, time: 0.332s)
+2025-12-16 20:20:47,423 - app - INFO - Response: 200 - Duration: 0.336s
+2025-12-16 20:20:52,539 - app - INFO - Request: GET /techniques/T1059.001 from 127.0.0.1
+2025-12-16 20:20:52,540 - app - INFO - Response: 200 - Duration: 0.001s

@@ -1,0 +1,17 @@
+{
+  "data_path": "events.csv",
+  "stix_path": "enterprise-attack.json",
+  "model_name": "bert-base-uncased",
+  "max_len": 128,
+  "batch_size": 16,
+  "lr": 2e-05,
+  "epochs": 25,
+  "weight_decay": 0.01,
+  "num_labels": 4,
+  "device": "cuda",
+  "seed": 42,
+  "fp16": true,
+  "dropout": 0.3,
+  "freeze_bert": true,
+  "warmup_ratio": 0.1
+}
