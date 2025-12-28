@@ -2,44 +2,35 @@
 
 **An AI-powered early-stage fileless malware detection tool using BERT-MLP deep learning architecture**
 
-[![Security](https://img.shields.io/badge/Purpose-DEFENSIVE%20ONLY-blue)]()
-[![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-red)]()
-[![Python](https://img.shields.io/badge/Python-3.8+-green)]()
-[![License](https://img.shields.io/badge/License-Research-orange)]()
 
 ---
 
 ## 📋 Overview
 
-This is a **defensive security tool** designed for SOC/Blue Team operations to detect fileless malware attacks in their early stages, before they reach operational capability. The system uses a BERT-MLP deep learning model trained on memory forensics artifacts and system behavior to classify attacks across four attack lifecycle stages.
+This is a **defensive security tool** designed to detect fileless malware attacks in their early stages, before they reach operational capability. The system uses a BERT-MLP deep learning model trained on memory forensics artifacts and system behavior to classify attacks across four attack lifecycle stages.
 
 ### Research Foundation
 
 Based on the paper:
 > **"Unveiling the veiled: An early stage detection of fileless malware"**  
-> Narendra Singh, Somanath Tripathy  
-> Computers & Security, Volume 150, 2025  
-> DOI: 10.1016/j.cose.2024.104231
 
 ### Key Features
 
 ✅ **4-Stage Attack Classification**
-- Initial Stage (Reconnaissance, Initial Access)
-- Pre-operational Stage (Execution, Persistence, Privilege Escalation)
-- Operational Stage (Defense Evasion, Credential Access, Discovery, Lateral Movement)
-- Final Stage (Collection, C&C, Exfiltration, Impact)
+- Initial Stage
+- Pre-operational Stage
+- Operational Stage
+- Final Stage
 
 ✅ **BERT-MLP Architecture**
-- BERT-base encoder (768-dim contextual embeddings)
+- BERT-base encoder
 - MLP classifier with numeric feature fusion
-- 108M parameters, 97.05% accuracy
-- <50ms inference latency
 
 ✅ **Automatic Process Monitoring** (Windows)
-- Real-time process scanning using WMI/psutil
+- Real-time process scanning using Sysmon
 - Suspicious process detection
 - Memory dump capture with ProcDump
-- Automatic malware analysis
+- Memory dump analysis with WinDBG
 
 ✅ **MITRE ATT&CK Integration**
 - Automatic technique mapping
@@ -51,6 +42,32 @@ Based on the paper:
 - Detection timeline visualization
 - Interactive MITRE ATT&CK mapping
 - Process details and recommendations
+
+---
+## 📑 Table of Contents
+
+1. [📋 Overview](#-overview)
+    - [Research Foundation](#research-foundation)
+    - [Key Features](#key-features)
+2. [🏗️ System Architecture](#️-system-architecture)
+    - [High-Level Architecture](#high-level-architecture)
+    - [ML Pipeline](#ml-pipeline)
+3. [🚀 Quick Start](#-quick-start)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+4. [📖 Usage Guide](#-usage-guide)
+    - [Option 1: Standalone Process Monitoring](#option-1-standalone-process-monitoring-recommended)
+    - [Option 2: FastAPI Server + Web UI](#option-2-fastapi-server--web-ui)
+    - [Option 3: REST API (Integration)](#option-3-rest-api-integration)
+5. [🧪 Training Your Own Model](#-training-your-own-model)
+    - [Dataset Preparation](#dataset-preparation)
+    - [Training](#training)
+    - [Dataset Format](#dataset-format)
+6. [📁 Project Structure](#-project-structure)
+7. [🎯 MITRE ATT&CK Coverage](#-mitre-attck-coverage)
+8. [📊 Performance Metrics](#-performance-metrics)
+9. [🐛 Troubleshooting](#-troubleshooting)
+10. [📚 References](#-references)
 
 ---
 
@@ -165,9 +182,10 @@ Input: Memory artifacts / Process behavior
 ### Installation
 
 #### 1. Clone & Setup Python Environment
+You can download our Pre-trained model at [here](https://drive.google.com/file/d/1-Vsoi7plhVuw7VyZ4Evm36Qu8OcF1lFm/view?usp=drive_link)
 
 ```bash
-cd /path/to/fileless2
+cd /path/to/NT230.Q12.ANTT_Nhom_15
 
 # Create virtual environment (recommended)
 python -m venv venv
@@ -190,7 +208,7 @@ pip install -r requirements.txt
 **WinDbg** (optional, for advanced memory analysis):
 ```bash
 # Download from Windows Store or Windows SDK
-# Or use cdb.exe from Windows Debugging Tools
+# Or use cdb.exe from Windows Debugging Tools, place in current directory as: cdb.exe
 ```
 
 #### 3. Verify Installation
@@ -379,7 +397,6 @@ curl -X POST http://localhost:8000/monitor/stop
 ## 🧪 Training Your Own Model
 
 The system includes training code in `my_training_code/` directory.
-
 ### Dataset Preparation
 
 ```bash
@@ -478,35 +495,6 @@ fileless2/
         └── vite.config.js         # Vite configuration
 ```
 
----
-
-## 🔒 Security Considerations
-
-### Defensive Use Only
-
-⚠️ **This tool is designed EXCLUSIVELY for defensive security operations:**
-- ✅ SOC/Blue Team malware detection
-- ✅ Incident response and forensics
-- ✅ Threat hunting
-- ✅ Security research (academic)
-- ❌ **NOT** for creating or testing malware
-- ❌ **NOT** for offensive security operations
-
-### Security Features
-
-- **Input Validation**: Size limits, type checking, sanitization
-- **Rate Limiting**: API request throttling
-- **Audit Logging**: All detections logged
-- **Eval Mode**: No gradient computation (inference only)
-- **Confidence Thresholding**: Configurable detection sensitivity
-- **Process Isolation**: Monitored processes in separate queue
-
-### Privacy & Ethics
-
-- Memory dumps may contain sensitive information
-- Use on authorized systems only
-- Follow your organization's security policies
-- Comply with data protection regulations (GDPR, etc.)
 
 ---
 
@@ -532,7 +520,7 @@ fileless2/
 
 ## 📊 Performance Metrics
 
-### Model Performance (from paper)
+### Model Performance
 
 | Metric | Value |
 |--------|-------|
@@ -580,13 +568,8 @@ WARNING: ProcDump not found; memory dumps disabled
 ```
 **Solution**: Download ProcDump from Microsoft Sysinternals and place in `C:\SysinternalsSuite\` or current directory.
 
-#### 4. WMI Access Denied (Windows)
-```
-Error: Access denied when querying WMI
-```
-**Solution**: Run as Administrator or grant WMI permissions.
 
-#### 5. Port Already in Use
+#### 4. Port Already in Use
 ```
 Error: Address already in use: 8000
 ```
@@ -620,51 +603,4 @@ uvicorn app:app --port 8001
 - Enterprise ATT&CK Matrix
 
 ---
-
-## 🤝 Contributing
-
-This is a research/educational tool. If you want to contribute:
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/improvement`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push to branch (`git push origin feature/improvement`)
-5. Create Pull Request
-
-**Contribution areas:**
-- Improved feature extraction
-- Additional MITRE technique coverage
-- Performance optimizations
-- Documentation improvements
-- Bug fixes
-
----
-
-## 📝 License
-
-This tool is provided for **defensive security research and education only**. Use responsibly and ethically.
-
-**Disclaimer**: The authors and contributors are not responsible for misuse of this tool. Use only on systems you own or have explicit permission to monitor.
-
----
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Check existing documentation
-- Review troubleshooting section
-
----
-
-## 🙏 Acknowledgments
-
-- Research by Narendra Singh & Somanath Tripathy (IIT Patna)
-- MITRE ATT&CK Framework
-- Hugging Face Transformers team
-- FastAPI and React communities
-- Microsoft Sysinternals (ProcDump)
-
----
-
 **Built with ❤️ for defensive security**
