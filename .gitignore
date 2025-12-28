@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+
+# IDE
+.vscode/
+
+# Windows
+Thumbs.db
+fileless_detector.pt
