@@ -1,22 +1,6 @@
 """
 Inference Engine for Fileless Malware Detection
 Implements secure prediction pipeline
-
-Based on:
-"Unveiling the veiled: An early stage detection of fileless malware"
-Singh & Tripathy (2024), Computers & Security
-
-Architecture:
-- BERT encoder (768-dim contextual embeddings)
-- Global Max Pooling
-- MLP classifier (128 → 64 → 4 stages)
-- Softmax probabilities
-
-Security Controls:
-- Input sanitization and size limits
-- No gradient computation (eval mode)
-- No raw logits exposure
-- Confidence thresholding
 """
 import logging
 import math

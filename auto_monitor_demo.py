@@ -1,9 +1,5 @@
 """
 Automatic Process Monitoring Demo
-
-Standalone script for real-time Windows process monitoring and fileless malware detection.
-No API server required - runs directly as a command-line tool.
-
 Usage:
     python auto_monitor_demo.py
 """

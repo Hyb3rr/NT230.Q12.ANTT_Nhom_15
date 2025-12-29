@@ -45,10 +45,9 @@ limiter = Limiter(key_func=get_remote_address)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Lifecycle management for model loading and process monitoring"""
     global model_loader, detector, process_monitor
     
-    logger.info("Starting Fileless Malware Detection API v2.0 (Auto-Monitoring)")
+    logger.info("Starting Fileless Malware Detection API")
     logger.info("Loading model weights...")
     
     try:
@@ -95,8 +94,8 @@ async def lifespan(app: FastAPI):
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Fileless Malware Detection API v2.0",
-    description="Early-stage detection of fileless malware with automatic Windows process monitoring. Features: Real-time WMI monitoring, ProcDump integration, BERT-MLP detection, MITRE ATT&CK correlation",
+    title="Fileless Malware Detection API",
+    description="Early-stage detection of fileless malware",
     version="2.0.0",
     lifespan=lifespan,
     docs_url="/docs",
@@ -174,17 +173,6 @@ async def health_check(request: Request):
 async def detect_malware(request: Request, detection_request: DetectionRequest):
     """
     Detect fileless malware from process memory features
-    
-    DEFENSIVE USE ONLY:
-    - Analyzes memory forensics artifacts
-    - Correlates with MITRE ATT&CK techniques
-    - Identifies attack stage (Initial, Pre-operational, Operational, Final)
-    
-    Security Controls:
-    - Input size limited to 10KB
-    - Rate limited to 10 requests/minute
-    - No model internals exposed
-    - All requests logged
     """
     if detector is None:
         raise HTTPException(
@@ -206,7 +194,7 @@ async def detect_malware(request: Request, detection_request: DetectionRequest):
         )
         inference_time = time.time() - start_time
         
-        # Log results (for monitoring)
+        # Log results
         logger.info(f"Detection result: {result['verdict']} "
                    f"(confidence: {result['confidence']:.2%}, "
                    f"stage: {result['stage_name']}, "

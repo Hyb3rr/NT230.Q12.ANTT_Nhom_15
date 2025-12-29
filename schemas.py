@@ -12,7 +12,6 @@ from pydantic import BaseModel, Field, validator
 
 
 class BaseSchema(BaseModel):
-    """Base schema with Pydantic v2-safe config"""
 
     model_config = {
         "protected_namespaces": (),

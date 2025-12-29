@@ -1,13 +1,5 @@
 """
 Secure Model Loader for Fileless Malware Detector
-Loads PyTorch model with security controls
-
-Security Features:
-- Model integrity verification
-- Safe device mapping (CPU fallback)
-- Memory-efficient loading
-- No weight exposure in logs
-- Proper resource cleanup
 """
 import json
 import logging
@@ -22,13 +14,6 @@ logger = logging.getLogger(__name__)
 
 
 class ModelLoader:
-    """
-    Securely loads and manages the fileless malware detection model
-    
-    Based on BERT-MLP architecture from:
-    "Unveiling the veiled: An early stage detection of fileless malware"
-    Singh & Tripathy (2024)
-    """
     
     def __init__(
         self,
@@ -36,8 +21,6 @@ class ModelLoader:
         config_path: str = "fileless_detector_cfg.json"
     ):
         """
-        Initialize model loader
-        
         Args:
             model_path: Path to trained model weights (.pt file)
             config_path: Path to model configuration JSON
