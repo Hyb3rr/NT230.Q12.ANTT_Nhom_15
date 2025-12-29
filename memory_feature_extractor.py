@@ -27,7 +27,7 @@ class MemoryFeatureExtractor:
         self.tools_dir.mkdir(exist_ok=True)
         # WinDbg / cdb path (preferred for dump analysis)
         self.windbg_path = (
-            self._find_tool('WINDBG_PATH', ['windbg.exe', 'cdb.exe']) or
+            self._find_tool('WINDBG_PATH', ['windbg.exe', r'C:\Users\Guest\AppData\Local\Microsoft\WindowsApps\cdbX64.exe']) or
             self._find_local_tool(['windbg.exe', 'cdb.exe'])
         )
         self.windbg_timeout = int(os.getenv('WINDBG_TIMEOUT', '180'))

@@ -56,9 +56,8 @@ Based on the paper:
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
 4. [📖 Usage Guide](#-usage-guide)
-    - [Option 1: Standalone Process Monitoring](#option-1-standalone-process-monitoring-recommended)
-    - [Option 2: FastAPI Server + Web UI](#option-2-fastapi-server--web-ui)
-    - [Option 3: REST API (Integration)](#option-3-rest-api-integration)
+    - [Option 1: Terminal Monitoring](#option-1-terminal-monitoring-recommended)
+    - [Option 2: Web Dashboard UI](#option-2-web-dashboard-ui)
 5. [🧪 Training Your Own Model](#-training-your-own-model)
     - [Dataset Preparation](#dataset-preparation)
     - [Training](#training)
@@ -205,10 +204,17 @@ pip install -r requirements.txt
 # Or place in current directory as: procdump.exe
 ```
 
-**WinDbg** (optional, for advanced memory analysis):
+**Sysmon** (for system monitor):
+```bash
+# Download from https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+# Run sysmon in the current directory, you can change the config if you want
+./Sysmon64.exe -accepteula -i sysmon_config.xml
+```
+
+**WinDbg** (for advanced memory analysis):
 ```bash
 # Download from Windows Store or Windows SDK
-# Or use cdb.exe from Windows Debugging Tools, place in current directory as: cdb.exe
+# Or use cdbX64.exe from Windows Debugging Tools, copy path of cdbX64.exe in memory_feature_extractor.py
 ```
 
 #### 3. Verify Installation
@@ -221,90 +227,98 @@ python test_api.py
 
 ## 📖 Usage Guide
 
-### Option 1: Standalone Process Monitoring (Recommended)
+### Option 1: Terminal Monitoring (Recommended)
 
-**Automatic real-time monitoring of Windows processes:**
+**Real-time monitoring with terminal output - Run as Administrator**
 
-```bash
-python auto_monitor_demo.py
-```
+1. **Open PowerShell as Administrator**
+   - Right-click PowerShell → "Run as Administrator"
 
-**Output:**
-```
-======================================================================
-  Fileless Malware Detection - Automatic Process Monitor
-======================================================================
+2. **Activate virtual environment and run app.py**
+   ```powershell
+   # Navigate to project directory
+   cd C:\path\to\NT230.Q12.ANTT_Nhom_15
+   
+   # Activate virtual environment
+   .\venv\Scripts\Activate.ps1
+   
+   # Run the application
+   python app.py
+   ```
 
-[1/3] Loading BERT-MLP model...
-✓ Model loaded successfully
-  Device: cuda:0
-  Architecture: BERT-MLP (4-stage classifier)
-
-[2/3] Initializing process monitor...
-✓ Process monitor initialized
-  ProcDump: C:\SysinternalsSuite\procdump.exe
-  Scan interval: 2s
-
-[3/3] Starting automatic monitoring...
-
-Monitoring Windows processes for suspicious activity...
-Looking for:
-  • Suspicious process names (PowerShell, cmd.exe, wmic.exe, etc.)
-  • Abnormal parent-child relationships
-  • High CPU/memory usage
-  • Unusual network activity
-
-Press Ctrl+C to stop monitoring
-======================================================================
-
-INFO - Suspicious process detected: powershell.exe (PID: 12345)
-INFO - Adding suspicious PID 12345 to queue
-INFO - Analyzing suspicious process PID 12345
-
-⚠️  MALWARE DETECTED ⚠️
-Process: powershell.exe (PID: 12345)
-Verdict: MALICIOUS
-Confidence: 87.34%
-Stage: Pre-operational (Stage 1)
-Tactics: Execution, Persistence
-Techniques: T1059.001 (PowerShell), T1055 (Process Injection)
-
-Recommendation: ALERT - Stage 1 attack detected
-```
+3. **Monitor the terminal output**
+   ```
+   ======================================================================
+     Fileless Malware Detection System - Starting...
+   ======================================================================
+   
+   [✓] Loading BERT-MLP model...
+   [✓] Model loaded successfully (Device: cuda:0)
+   [✓] Initializing Sysmon event monitor...
+   [✓] Process monitor started
+   
+   Monitoring Windows processes for suspicious activity...
+   - Scanning Sysmon events in real-time
+   - Detecting suspicious process behaviors
+   - Capturing memory dumps with ProcDump
+   - Analyzing with BERT-MLP AI model
+   
+   Press Ctrl+C to stop monitoring
+   ======================================================================
+   
+   INFO - Suspicious Sysmon event detected (EventID: 1, RecordID: 12345)
+   INFO - Analyzing suspicious process PID 5678 (powershell.exe)
+   
+   ⚠️  MALWARE DETECTED ⚠️
+   Process: powershell.exe (PID: 5678)
+   Path: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+   Command: powershell.exe -EncodedCommand JABhAD0AJw...
+   
+   Detection:
+     Verdict: MALICIOUS
+     Confidence: 87.34%
+     Attack Stage: Pre-operational (Stage 1)
+   
+   MITRE ATT&CK:
+     Tactics: Execution, Persistence
+     Techniques: T1059.001 (PowerShell), T1055 (Process Injection)
+   
+   Recommendation: ALERT - Stage 1 attack detected
+   ======================================================================
+   ```
 
 **Features:**
-- ✅ Automatic scanning every 2 seconds
-- ✅ Suspicious process detection
-- ✅ Memory dump capture (if ProcDump available)
-- ✅ Real-time analysis with BERT-MLP
-- ✅ MITRE ATT&CK mapping
-- ✅ Statistics every 30 seconds
+- ✅ Real-time Sysmon event monitoring
+- ✅ Automatic suspicious process detection
+- ✅ Memory dump capture (ProcDump)
+- ✅ Memory dump analysis (WinDbg)
+- ✅ AI-powered malware classification
+- ✅ MITRE ATT&CK technique mapping
+- ✅ Detailed terminal logging
+
+**API Endpoints (when running app.py):**
+- API: `http://localhost:8000`
+- Swagger Docs: `http://localhost:8000/docs`
+- Health Check: `http://localhost:8000/health`
 
 ---
 
-### Option 2: FastAPI Server + Web UI
+### Option 2: Web Dashboard UI
 
-**For dashboard monitoring and REST API access:**
+**Visual monitoring with interactive web interface**
 
-#### Step 1: Start the API Server
-
-```bash
-# Start FastAPI backend
-uvicorn app:app --host 0.0.0.0 --port 8000
-
-# Or with auto-reload (development)
-uvicorn app:app --reload
+**Step 1: Start the backend (if not already running)**
+```powershell
+# In PowerShell (as Administrator)
+cd C:\path\to\NT230.Q12.ANTT_Nhom_15
+.\venv\Scripts\Activate.ps1
+python app.py
 ```
 
-**API will be available at:**
-- API: `http://localhost:8000`
-- Swagger Docs: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
-
-#### Step 2: Start the Web UI
-
-```bash
-cd fileless-ui
+**Step 2: Start the Web UI**
+```powershell
+# Open a new PowerShell window (normal user is fine)
+cd C:\path\to\NT230.Q12.ANTT_Nhom_15\fileless-ui
 
 # Install dependencies (first time only)
 npm install
@@ -313,84 +327,38 @@ npm install
 npm run dev
 ```
 
-**Web UI will be available at:**
-- Dashboard: `http://localhost:5173`
+**Step 3: Access the Dashboard**
+- Open browser: `http://localhost:5173`
 
-#### Step 3: Use the Dashboard
+**Dashboard Features:**
 
-1. **Monitor Tab**: View real-time monitoring statistics
-   - Processes scanned
-   - Suspicious processes found
-   - Malware detections
-   - Current queue size
+1. **Monitor Tab** - Real-time Statistics
+   - Total events scanned
+   - Suspicious processes detected
+   - Malware confirmed
+   - Active monitoring status
+   - Detection rate graph
 
-2. **Detect Tab**: Manual malware detection
-   - Enter memory artifacts or process behavior
-   - Optional numeric features
-   - Confidence threshold adjustment
-   - View detailed results with MITRE mapping
+2. **Detect Tab** - Manual Analysis
+   - Enter process behavior description
+   - Paste command line arguments
+   - Input memory artifacts
+   - Get instant AI-powered verdict
+   - View MITRE ATT&CK mapping
 
-3. **Detections Tab**: Detection history timeline
+3. **Detections Tab** - History Timeline
    - Recent malware detections
-   - Process details
+   - Process details and PIDs
    - Confidence scores
    - Attack stages
+   - Memory dump locations
+   - Downloadable analysis reports
 
----
-
-### Option 3: REST API (Integration)
-
-**For SIEM/SOC integration:**
-
-#### Health Check
-```bash
-curl http://localhost:8000/health
-```
-
-#### Manual Detection
-```bash
-curl -X POST http://localhost:8000/detect \
-  -H "Content-Type: application/json" \
-  -d '{
-    "text": "powershell.exe -EncodedCommand JABhAD0AJwBoAHQAdABwADoALw executing with suspicious parent winword.exe accessing registry HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
-    "threshold": 0.5
-  }'
-```
-
-**Response:**
-```json
-{
-  "verdict": "malicious",
-  "confidence": 0.8734,
-  "stage": 1,
-  "stage_name": "Pre-operational",
-  "probabilities": {
-    "Initial": 0.0234,
-    "Pre-operational": 0.8734,
-    "Operational": 0.0823,
-    "Final": 0.0209
-  },
-  "tactics": ["Execution", "Persistence"],
-  "common_techniques": ["T1059.001", "T1112", "T1055"],
-  "recommendation": "ALERT: Stage 1 attack detected. Pre-operational phase indicates execution and persistence mechanisms. Immediate investigation required.",
-  "inference_time_ms": 42.3
-}
-```
-
-#### Process Monitor Control
-```bash
-# Start monitoring
-curl -X POST http://localhost:8000/monitor/start
-
-# Get statistics
-curl http://localhost:8000/monitor/stats
-
-# Get recent detections
-curl http://localhost:8000/monitor/detections
-
-# Stop monitoring
-curl -X POST http://localhost:8000/monitor/stop
-```
+**Screenshots:**
+- Real-time monitoring dashboard
+- Interactive detection results
+- MITRE ATT&CK technique visualization
+- Process behavior timeline
 
 ---
 

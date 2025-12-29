@@ -1,6 +1,8 @@
 # Core ML/DL frameworks
 torch==2.1.0
 transformers==4.35.0
+pandas==2.0.2
+numpy<2
 
 # API framework
 fastapi==0.104.1
@@ -14,11 +16,6 @@ pydantic-settings==2.1.0
 
 # Process monitoring
 psutil==5.9.6
-WMI>=1.5.1; sys_platform == 'win32'
-pywin32>=306; sys_platform == 'win32'
-
-# Memory forensics
-volatility3>=2.5.0
 
 # Utilities
 requests==2.31.0
