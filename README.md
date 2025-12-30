@@ -5,7 +5,7 @@
 
 ---
 
-## 📋 Overview
+## Overview
 
 This is a **defensive security tool** designed to detect fileless malware attacks in their early stages, before they reach operational capability. The system uses a BERT-MLP deep learning model trained on memory forensics artifacts and system behavior to classify attacks across four attack lifecycle stages.
 
@@ -16,107 +16,59 @@ Based on the paper:
 
 ### Key Features
 
-✅ **4-Stage Attack Classification**
+**4-Stage Attack Classification**
 - Initial Stage
 - Pre-operational Stage
 - Operational Stage
 - Final Stage
 
-✅ **BERT-MLP Architecture**
+**BERT-MLP Architecture**
 - BERT-base encoder
 - MLP classifier with numeric feature fusion
 
-✅ **Automatic Process Monitoring** (Windows)
+**Automatic Process Monitoring** (Windows)
 - Real-time process scanning using Sysmon
 - Suspicious process detection
 - Memory dump capture with ProcDump
 - Memory dump analysis with WinDBG
 
-✅ **MITRE ATT&CK Integration**
+**MITRE ATT&CK Integration**
 - Automatic technique mapping
 - Tactic correlation
 - Stage-specific threat intelligence
 
-✅ **Web UI Dashboard**
+**Web UI Dashboard**
 - Real-time monitoring statistics
 - Detection timeline visualization
 - Interactive MITRE ATT&CK mapping
 - Process details and recommendations
 
 ---
-## 📑 Table of Contents
+## Table of Contents
 
-1. [📋 Overview](#-overview)
+1. [Overview](#-overview)
     - [Research Foundation](#research-foundation)
     - [Key Features](#key-features)
-2. [🏗️ System Architecture](#️-system-architecture)
+2. [System Architecture](#️-system-architecture)
     - [High-Level Architecture](#high-level-architecture)
     - [ML Pipeline](#ml-pipeline)
-3. [🚀 Quick Start](#-quick-start)
+3. [Quick Start](#-quick-start)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-4. [📖 Usage Guide](#-usage-guide)
+4. [Usage Guide](#-usage-guide)
     - [Option 1: Terminal Monitoring](#option-1-terminal-monitoring-recommended)
     - [Option 2: Web Dashboard UI](#option-2-web-dashboard-ui)
-5. [🧪 Training Your Own Model](#-training-your-own-model)
+5. [Training Your Own Model](#-training-your-own-model)
     - [Dataset Preparation](#dataset-preparation)
     - [Training](#training)
     - [Dataset Format](#dataset-format)
-6. [📁 Project Structure](#-project-structure)
-7. [🎯 MITRE ATT&CK Coverage](#-mitre-attck-coverage)
-8. [📊 Performance Metrics](#-performance-metrics)
-9. [🐛 Troubleshooting](#-troubleshooting)
-10. [📚 References](#-references)
+6. [Project Structure](#-project-structure)
+7. [MITRE ATT&CK Coverage](#-mitre-attck-coverage)
+8. [Performance Metrics](#-performance-metrics)
+9. [Troubleshooting](#-troubleshooting)
+10. [References](#-references)
 
 ---
-
-## 🏗️ System Architecture
-
-### High-Level Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                  Fileless Detection System                      │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌────────────────────┐         ┌──────────────────────┐       │
-│  │  Process Monitor   │────────▶│  Memory Extraction   │       │
-│  │  (WMI/psutil)      │         │  (ProcDump/WinDbg)   │       │
-│  └────────────────────┘         └──────────┬───────────┘       │
-│           │                                 │                   │
-│           │                                 │                   │
-│           ▼                                 ▼                   │
-│  ┌────────────────────┐         ┌──────────────────────┐       │
-│  │  Suspicious Queue  │────────▶│  Feature Extraction  │       │
-│  │  (PIDs)            │         │  (APIs, strings,     │       │
-│  └────────────────────┘         │   patterns)          │       │
-│                                 └──────────┬───────────┘       │
-│                                            │                   │
-│                                            ▼                   │
-│                                 ┌──────────────────────┐       │
-│                                 │   BERT-MLP Model     │       │
-│                                 │   (fileless_         │       │
-│                                 │    detector.pt)      │       │
-│                                 └──────────┬───────────┘       │
-│                                            │                   │
-│                                            ▼                   │
-│                                 ┌──────────────────────┐       │
-│                                 │  MITRE ATT&CK        │       │
-│                                 │  Mapping & Verdict   │       │
-│                                 └──────────────────────┘       │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────┐          │
-│  │          FastAPI REST API (Port 8000)            │          │
-│  │  /detect  /health  /monitor/*  /techniques       │          │
-│  └──────────────────────────────────────────────────┘          │
-│                          │                                      │
-│                          ▼                                      │
-│  ┌──────────────────────────────────────────────────┐          │
-│  │       React + Vite Web UI (Port 5173)            │          │
-│  │  Dashboard | Real-time Monitoring | Detections   │          │
-│  └──────────────────────────────────────────────────┘          │
-└─────────────────────────────────────────────────────────────────┘
-```
 
 ### ML Pipeline
 
@@ -168,7 +120,7 @@ Input: Memory artifacts / Process behavior
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -225,7 +177,7 @@ python test_api.py
 
 ---
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### Option 1: Terminal Monitoring (Recommended)
 
@@ -288,13 +240,13 @@ python test_api.py
    ```
 
 **Features:**
-- ✅ Real-time Sysmon event monitoring
-- ✅ Automatic suspicious process detection
-- ✅ Memory dump capture (ProcDump)
-- ✅ Memory dump analysis (WinDbg)
-- ✅ AI-powered malware classification
-- ✅ MITRE ATT&CK technique mapping
-- ✅ Detailed terminal logging
+- Real-time Sysmon event monitoring
+- Automatic suspicious process detection
+- Memory dump capture (ProcDump)
+- Memory dump analysis (WinDbg)
+- AI-powered malware classification
+- MITRE ATT&CK technique mapping
+- Detailed terminal logging
 
 **API Endpoints (when running app.py):**
 - API: `http://localhost:8000`
@@ -362,7 +314,7 @@ npm run dev
 
 ---
 
-## 🧪 Training Your Own Model
+## Training Your Own Model
 
 The system includes training code in `my_training_code/` directory.
 ### Dataset Preparation
@@ -423,7 +375,7 @@ text,num_feats,label
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 fileless2/
@@ -466,7 +418,7 @@ fileless2/
 
 ---
 
-## 🎯 MITRE ATT&CK Coverage
+## MITRE ATT&CK Coverage
 
 ### Stage 0: Initial
 - **Tactics**: Reconnaissance, Initial Access
@@ -486,7 +438,7 @@ fileless2/
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 ### Model Performance
 
@@ -511,7 +463,7 @@ fileless2/
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -553,7 +505,7 @@ uvicorn app:app --port 8001
 
 ---
 
-## 📚 References
+## References
 
 ### Research Paper
 - Singh, N., & Tripathy, S. (2025). Unveiling the veiled: An early stage detection of fileless malware. *Computers & Security*, 150, 104231.
@@ -570,5 +522,3 @@ uvicorn app:app --port 8001
 - https://attack.mitre.org/
 - Enterprise ATT&CK Matrix
 
----
-**Built with ❤️ for defensive security**
